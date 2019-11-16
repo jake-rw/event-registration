@@ -15,19 +15,21 @@ class EventRegistrationServiceProvider extends ServiceProvider
          * Optional methods to load your package assets
          */
         // $this->loadTranslationsFrom(__DIR__.'/../resources/lang', 'event-registration');
-        // $this->loadViewsFrom(__DIR__.'/../resources/views', 'event-registration');
-        // $this->loadMigrationsFrom(__DIR__.'/../database/migrations');
-        // $this->loadRoutesFrom(__DIR__.'/routes.php');
+        $this->loadViewsFrom(__DIR__.'/resources/views/backend', 'event-registration');
+        $this->loadMigrationsFrom(__DIR__.'/database/migrations');
+        $this->loadRoutesFrom(__DIR__.'/routes/registrations.php');
 
         if ($this->app->runningInConsole()) {
             $this->publishes([
                 __DIR__.'/../config/config.php' => config_path('event-registration.php'),
             ], 'config');
 
+
+
             // Publishing the views.
-            /*$this->publishes([
-                __DIR__.'/../resources/views' => resource_path('views/vendor/event-registration'),
-            ], 'views');*/
+            $this->publishes([
+                __DIR__.'/../resources/views/backend' => resource_path('views/vendor/event-registration'),
+            ], 'views');
 
             // Publishing assets.
             /*$this->publishes([
