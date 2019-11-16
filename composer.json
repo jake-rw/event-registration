@@ -1,0 +1,54 @@
+{
+    "name": "jake-rw/event-registration",
+    "description": "A handy package to handle Event registrations",
+    "keywords": [
+        "jake-rw",
+        "event-registration"
+    ],
+    "homepage": "https://github.com/jake-rw/event-registration",
+    "license": "MIT",
+    "type": "library",
+    "authors": [
+        {
+            "name": "Jake Rudkin-Wilson",
+            "email": "me@jakerw.co.uk",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": "^7.1",
+        "illuminate/support": "5.8.*"
+    },
+    "require-dev": {
+        "orchestra/testbench": "3.8.*",
+        "phpunit/phpunit": "^7.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "JakeRw\\EventRegistration\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "JakeRw\\EventRegistration\\Tests\\": "tests"
+        }
+    },
+    "scripts": {
+        "test": "vendor/bin/phpunit",
+        "test-coverage": "vendor/bin/phpunit --coverage-html coverage"
+
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "JakeRw\\EventRegistration\\EventRegistrationServiceProvider"
+            ],
+            "aliases": {
+                "EventRegistration": "JakeRw\\EventRegistration\\EventRegistrationFacade"
+            }
+        }
+    }
+}
