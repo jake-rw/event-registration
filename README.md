@@ -15,17 +15,6 @@ You can install the package via composer:
 composer require jake-rw/event-registration
 ```
 
-## Usage
-
-``` php
-// Usage description here
-```
-
-### Testing
-
-``` bash
-composer test
-```
 
 ### Changelog
 
@@ -47,7 +36,3 @@ If you discover any security related issues, please email me@jakerw.co.uk instea
 ## License
 
 The MIT License (MIT). Please see [License File](LICENSE.md) for more information.
-
-## Laravel Package Boilerplate
-
-This package was generated using the [Laravel Package Boilerplate](https://laravelpackageboilerplate.com).
