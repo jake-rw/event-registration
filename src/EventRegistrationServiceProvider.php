@@ -15,9 +15,9 @@ class EventRegistrationServiceProvider extends ServiceProvider
          * Optional methods to load your package assets
          */
         // $this->loadTranslationsFrom(__DIR__.'/../resources/lang', 'event-registration');
-        $this->loadViewsFrom(__DIR__.'/resources/views/backend', 'event-registration');
+        $this->loadViewsFrom(__DIR__.'/resources/views/', 'event-registration');
         $this->loadMigrationsFrom(__DIR__.'/database/migrations');
-        $this->loadRoutesFrom(__DIR__.'/routes/registrations.php');
+        $this->loadRoutesFrom(__DIR__.'/routes/backend/registration.php');
 
         if ($this->app->runningInConsole()) {
             $this->publishes([
@@ -28,7 +28,7 @@ class EventRegistrationServiceProvider extends ServiceProvider
 
             // Publishing the views.
             $this->publishes([
-                __DIR__.'/../resources/views/backend' => resource_path('views/vendor/event-registration'),
+                __DIR__.'/../resources/views/' => resource_path('views/vendor/event-registration'),
             ], 'views');
 
             // Publishing assets.
@@ -58,5 +58,7 @@ class EventRegistrationServiceProvider extends ServiceProvider
         $this->app->singleton('event-registration', function () {
             return new EventRegistration;
         });
+
+        require_once(__DIR__.'/Helpers/Helpers.php');
     }
 }

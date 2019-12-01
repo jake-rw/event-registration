@@ -1,18 +1,19 @@
 <?php
 
-namespace App\Http\Controllers\Backend;
+
+namespace JakeRw\EventRegistration\Http\Controllers\Backend;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Admin\Registrations\AddRegistration;
-use App\Http\Requests\Admin\Registrations\EditRegistration;
+use JakeRw\EventRegistration\Http\Requests\Admin\Registrations\AddRegistration;
+use JakeRw\EventRegistration\Http\Requests\Admin\Registrations\EditRegistration;
 
 use DB;
 use Illuminate\Http\File;
 use Symfony\Component\HttpFoundation\StreamedResponse;
 use Illuminate\Support\Facades\Storage;
 
-use App\Models\Registration;
+use JakeRw\EventRegistration\Models\Registration;
 use Carbon\Carbon;
 
 
@@ -22,94 +23,59 @@ class RegisterController extends Controller
 	public function index() {
 
 		$posts = Registration::all();
-
-		return view('backend.registrations.list', compact('posts'));
+		return view('event-registration::backend.registrations.list', compact('posts'));
 	}
 
 	public function create() {
-
-		$usage = usage();
+		
 		$status = status();
-		return view('backend.registrations.create', compact(['usage','status']));;
+		return view('event-registration::backend.registrations.create', compact(['status']));;
 	}
 
 
 	public function edit($id) {
 
 		$post = Registration::find($id);
-		$usage = usage();
 		$status = status();
 
-		return view('backend.registrations.edit', compact(['post','usage','status']));
+		return view('event-registration::backend.registrations.edit', compact(['post','status']));
 	}
 
 	public function store(AddRegistration $request) {
+        $validated  = $request->validated();
 
-		$post = $request->only(
-			'cf_fname',
-            'cf_lname',
-            'cf_email',
-            'cf_tel',
-            'cf_job_title',
-            'cf_requirements',
-            'cf_medical',
-            'cf_company',
-            'cf_consent'
-		);
-
-		$item = new Registration;
-		
-		//Loop through each post value and save
-		foreach ($post as $key => $value) {
-			if( $key == '_token' ){
-    			continue;
-    		}			
-
-			$item->setAttribute($key, $value); 
-		}
-
-		$item->save();
-
-		return redirect('admin/registrations');
-	}
-	
-	public function update(EditRegistration $request) {
-
-		$post = $request->only(
-            'bid',
-            'cf_fname',
-            'cf_lname',
-            'cf_email',
-            'cf_tel',
-            'cf_job_title',
-            'cf_requirements',
-            'cf_medical',
-            'cf_company',
-            'cf_consent'
-        );
-
-        $bid = $request->input('bid');
-        $item = Registration::where([
-				['id', $bid]
-			])->first();
-        
-        if ($item) {
-        	//Loop through each post value and save
-			foreach ($post as $key => $value) {
-				if( $key == '_token' || 
-					$key == 'bid' 
-				){
-	    			continue;
-	    		}
-				
-				$item->setAttribute($key, $value); 
-			}
-			
-            $item->save();           
-
+        try {
+            Registration::create($validated);
+        } catch (Exception $e) {
+           return redirect( route('admin.registrations.update', ['registration'=>$id]) )->withErrors(['Error', 'Error saving, please try again']);
         }
 
-		return redirect('/admin/registrations/');
+        return redirect( route('admin.registrations.update', ['registration'=>$id]) );
+        
+	}
+
+    public function show($id) {
+        $status = status();
+        $post = Registration::find($id);
+       // return view('user.profile', ['user' => User::findOrFail($id)]);
+        return view('event-registration::backend.registrations.edit', compact(['post','status']));
+
+    }
+	
+	public function update(EditRegistration $request, $id) {
+
+		$validated  = $request->validated();
+
+        try {
+           $item = Registration::where([
+                ['id', $id]
+            ])->first()->update($validated);
+ 
+        } catch (Exception $e) {
+            return redirect( route('admin.registrations.update', ['registration'=>$id]) )->withErrors(['Error', 'Error saving, please try again']);
+        }
+
+		return redirect( route('admin.registrations.index') );
 	}
 
 	public function delete($id) {
@@ -117,7 +83,7 @@ class RegisterController extends Controller
 		$post = Registration::findOrFail($id);
 		$post->destroy($id);
 		
-		return redirect('/backend/registrations/');
+		return redirect(route('admin.registrations.index'));
 	}
 
 	/**
@@ -127,7 +93,6 @@ class RegisterController extends Controller
      */
     public function export(Request $request)
     {
-
         
             $data = Registration::orderBy('id', 'DESC')->get()->toArray();
             $contents = '';

@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Http\Controllers\Frontend;
+namespace JakeRw\EventRegistration\Controllers\Frontend;
 
-use App\Http\Controllers\Controller;
+use JakeRw\EventRegistration\Controllers\Controller;
 
-use App\Http\Requests\Admin\Registrations\AddRegistration;
-use App\Models\Registration;
-use App\Events\RegistrationPlaced;
+use JakeRw\EventRegistration\Requests\Admin\Registrations\AddRegistration;
+use JakeRw\EventRegistration\Models\Registration;
+use JakeRw\EventRegistration\Events\RegistrationPlaced;
 
 class RegistrationController extends Controller
 {

@@ -1,7 +1,6 @@
 <?php
 
-namespace App\Http\Requests\Admin\Registrations;
-
+namespace JakeRw\EventRegistration\Http\Requests\Admin\Registrations;
 use Illuminate\Foundation\Http\FormRequest;
 
 class AddRegistration extends FormRequest
@@ -30,7 +29,7 @@ class AddRegistration extends FormRequest
             'cf_email.unique'          => 'This email has already been taken',
             'cf_tel.required'          => 'Telephone is required',
             'cf_job_title.required'    => 'Job title is required',
-            'cf_requirements.required' => 'Dietry requirements is required',
+            'cf_company.required' => 'Company name is required',
         ];
     }
 
@@ -45,11 +44,10 @@ class AddRegistration extends FormRequest
             'cf_fname'        => 'required|max:255',
             'cf_lname'        => 'required|max:255',
             'cf_email'        => 'required|email|unique:registrations',
-            'cf_tel'          => 'required|max:255',
             'cf_job_title'    => 'required|max:255',
-            'cf_requirements' => 'max:255',
-            'cf_medical'      => 'max:255',
-            'cf_other'        => 'max:255',
+            'cf_tel'          => 'required|max:255',           
+            'cf_company'      => 'nullable|max:255',
+            'cf_consent'      => 'nullable',
         ];
     }
 }

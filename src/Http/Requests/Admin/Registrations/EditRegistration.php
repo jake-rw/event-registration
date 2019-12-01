@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Requests\Admin\Registrations;
+namespace JakeRw\EventRegistration\Http\Requests\Admin\Registrations;
 
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -26,11 +26,10 @@ class EditRegistration extends FormRequest
         return [
             'cf_fname.required' => 'First Name is required',
             'cf_lname.required' => 'Family Name is required',
-            'cf_email.required' => 'Email is required',            
+            'cf_email.required'        => 'Email is required',
+            'cf_email.unique'          => 'This email has already been taken',            
             'cf_tel.required' => 'Telephone is required',
             'cf_job_title.required' => 'Job title is required',
-            'cf_requirements.required' => 'Dietry requirements is required',
-            'cf_medical.required' => 'Medical information is required',
             'cf_company.required' => 'Company name is required',
         ];
     }
@@ -43,15 +42,14 @@ class EditRegistration extends FormRequest
     public function rules()
     {
         return [
-            'bid' => 'required|numeric',
-            'cf_fname' => 'required|max:255',
-            'cf_lname' => 'required|max:255',
-            'cf_email' => 'required|max:255|email',
-            'cf_tel' => 'required|max:255',
-            'cf_job_title' => 'required|max:255',
-            'cf_requirements' => 'required|max:255',
-            'cf_medical' => 'required|max:255',
-            'cf_company' => 'required|max:255',
+            //'bid' => 'required|numeric',
+            'cf_fname'        => 'required|max:255',
+            'cf_lname'        => 'required|max:255',
+            'cf_email'        => 'required|email',
+            'cf_job_title'    => 'required|max:255',
+            'cf_tel'          => 'required|max:255',           
+            'cf_company'      => 'nullable|max:255',
+            'cf_consent'      => 'nullable',
         ];
     }
 }

@@ -20,11 +20,8 @@ class CreateRegistrationsTable extends Migration
             $table->string('cf_company');
             $table->string('cf_job_title');
             $table->string('cf_email');
-            $table->string('cf_tel');
-            $table->text('cf_requirements')->nullable();
-            $table->text('cf_medical')->nullable();
-            $table->text('cf_other')->nullable();
-            $table->boolean('cf_consent');
+            $table->string('cf_tel');            
+            $table->boolean('cf_consent')->default(0);
             $table->timestamps();
         });
     }

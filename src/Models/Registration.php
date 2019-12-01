@@ -1,6 +1,6 @@
 <?php
 
-namespace JakeRw\Models;
+namespace JakeRw\EventRegistration\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
