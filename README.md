@@ -7,14 +7,15 @@
 
 This package covers the vanilla event registration requirements:
 
-Registrations table
-Resource controller and routes
-Admin view courtsey of AdminLte
-Email notifications on registration to the admin and user email address
-Export registrations to CSV
+* Registrations table
+* Resource controller and routes
+* Admin view courtsey of AdminLte
+* Email notifications on registration to the admin and user email address
+* Export registrations to CSV
 
 Dev requirements
-Corporate Inovations Admin package and AdminLte
+* Corporate Inovations Admin package 
+* AdminLte
 
 ## Installation
 
