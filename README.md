@@ -1,11 +1,20 @@
-# Very short description of the package
+# Event Registration
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/jake-rw/event-registration.svg?style=flat-square)](https://packagist.org/packages/jake-rw/event-registration)
 [![Build Status](https://img.shields.io/travis/jake-rw/event-registration/master.svg?style=flat-square)](https://travis-ci.org/jake-rw/event-registration)
 [![Quality Score](https://img.shields.io/scrutinizer/g/jake-rw/event-registration.svg?style=flat-square)](https://scrutinizer-ci.com/g/jake-rw/event-registration)
 [![Total Downloads](https://img.shields.io/packagist/dt/jake-rw/event-registration.svg?style=flat-square)](https://packagist.org/packages/jake-rw/event-registration)
 
-This is where your description should go. Try and limit it to a paragraph or two, and maybe throw in a mention of what PSRs you support to avoid any confusion with users and contributors.
+This package covers the vanilla event registration requirements:
+
+Registrations table
+Resource controller and routes
+Admin view courtsey of AdminLte
+Email notifications on registration to the admin and user email address
+Export registrations to CSV
+
+Dev requirements
+Corporate Inovations Admin package and AdminLte
 
 ## Installation
 
@@ -15,17 +24,6 @@ You can install the package via composer:
 composer require jake-rw/event-registration
 ```
 
-## Usage
-
-``` php
-// Usage description here
-```
-
-### Testing
-
-``` bash
-composer test
-```
 
 ### Changelog
 
@@ -42,12 +40,7 @@ If you discover any security related issues, please email me@jakerw.co.uk instea
 ## Credits
 
 - [Jake Rudkin-Wilson](https://github.com/jake-rw)
-- [All Contributors](../../contributors)
 
 ## License
 
 The MIT License (MIT). Please see [License File](LICENSE.md) for more information.
-
-## Laravel Package Boilerplate
-
-This package was generated using the [Laravel Package Boilerplate](https://laravelpackageboilerplate.com).
