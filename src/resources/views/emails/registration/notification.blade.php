@@ -1,7 +1,7 @@
 @component('mail::message')
 # Registration
 
-You have a new Future Focused event registration
+You have a new S&P Global Platts 2020 event registration
 
 @component('mail::button', ['url' => url('/admin/registrations')])
 View Registrations
